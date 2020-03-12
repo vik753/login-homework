@@ -6,6 +6,7 @@ import { validate } from "./helpers/validate";
 import { showInputError, removeInputError } from "./views/form";
 import { login } from "./services/auth.service";
 import { notify } from "./views/notifications";
+import { getNews } from "./services/news.service";
 
 /*
  * l: denis.m.pcspace@gmail.com
@@ -35,16 +36,17 @@ async function onSubmit() {
   if (!isValidForm) return;
 
   try {
-
-    let response = await login(inputEmail.value, inputPassword.value);
-    const { error, auth, token, id } = response;
+    await login(inputEmail.value, inputPassword.value);
+    await getNews();
     form.reset();
     notify({
-      msg: `Login success! Your id: ${id}`,
+      msg: `Login success!`,
       className: "alert-success",
     });
   } catch (error) {
-    // console.dir(error)
-    notify({ msg: `${error.response.data.message}`, className: "alert-danger" });
+    notify({
+      msg: `${error.response.data.message}`,
+      className: "alert-danger",
+    });
   }
 }
