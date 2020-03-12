@@ -1,5 +1,9 @@
 .login-page-wrapp {
-  height: 100vh;
+  height: 80vh;
+}
+
+.auth-page-wrapp {
+  min-height: 80vh;
 }
 
 .login-form-wrap {
@@ -36,5 +40,28 @@
 }
 
 .login-greeting-screen .login-greeting-screen-description {
+  line-height: 1.4;
+}
+
+.auth-greeting-screen {
+  background: var(--cyan);
+  width: 50%;
+  padding: 20px;
+}
+
+.auth-greeting-screen .auth-greeting-screen-text {
+  max-width: 500px;
+}
+
+.auth-greeting-screen .auth-greeting-screen-text {
+  color: var(--white);
+}
+
+.auth-greeting-screen .auth-greeting-screen-title {
+  margin-bottom: 30px;
+  text-transform: capitalize;
+}
+
+.auth-greeting-screen .auth-greeting-screen-description {
   line-height: 1.4;
 }

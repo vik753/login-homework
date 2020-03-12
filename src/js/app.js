@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap";
 import "../css/style.css";
 
 import UI from "./config/ui.config";
@@ -12,6 +13,21 @@ import { getNews } from "./services/news.service";
  * l: denis.m.pcspace@gmail.com
  * p: dmgame12345
  */
+
+/**
+email: ["denis.m.pcspace@gmail.com](mailto:%22denis.m.pcspace@gmail.com)",
+password: "dmgame12345",
+nickname: "dmgame",
+first_name: "Denis",
+last_name: "Mescheryakov",
+phone: "0631234567",
+gender_orientation: "male", // or "female"
+city: "Kharkiv",
+country: "Ukrane",
+date_of_birth_day: 01,
+date_of_birth_month: 03,
+date_of_birth_year: 1989,
+   */
 
 const { form, inputEmail, inputPassword } = UI;
 const inputs = [inputEmail, inputPassword];

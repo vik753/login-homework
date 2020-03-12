@@ -7,53 +7,266 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="login-page-wrapp d-flex">
-      <div class="login-form-wrap d-flex align-items-center">
-        <div class="form-card card ml-auto">
-          <div class="card-body">
-            <h4 class="card-title">Please Login</h4>
-            <form name="loginForm">
-              <div class="form-group">
-                <label for="email">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                  data-required="email"
-                  data-invalid-message="Please provide valid email example@example.com"
-                />
+    <div class="container mt-5">
+      <!-- Nav tabs -->
+      <!-- Auth -->
+      <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="auth-tab"
+            data-toggle="tab"
+            href="#auth"
+            role="tab"
+            aria-controls="auth"
+            aria-selected="true"
+          >
+            Authentication
+          </a>
+        </li>
+        <!-- Login -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="login-tab"
+            data-toggle="tab"
+            href="#login"
+            role="tab"
+            aria-controls="login"
+            aria-selected="false"
+          >
+            Login
+          </a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div
+          class="tab-pane active"
+          id="auth"
+          role="tabpanel"
+          aria-labelledby="auth-tab"
+        >
+          <!-- Auth Tab -->
+          <div class="auth-page-wrapp d-flex">
+            <div class="login-form-wrap d-flex align-items-center">
+              <div class="form-card card ml-auto">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    Please enter your data for authentication
+                  </h4>
+                  <form name="authForm">
+                    <div class="form-group">
+                      <label for="email-auth">Email address</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email-auth"
+                        aria-describedby="emailHelp"
+                        placeholder="Enter email"
+                        data-required="email"
+                        data-invalid-message="Please provide valid email example@example.com"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="password-auth">Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="password-auth"
+                        placeholder="Password"
+                        data-required="password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="nickname-auth">Nickname</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nickname-auth"
+                        placeholder="Nickname"
+                        data-required="nickname"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="first_name-auth">First name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="first_name-auth"
+                        placeholder="First name"
+                        data-required="first_name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="last_name-auth">Last name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="last_name-auth"
+                        placeholder="Last name"
+                        data-required="last_name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="phone-auth">Phone</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="phone-auth"
+                        placeholder="Phone"
+                        data-required="phone"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">
+                        Gender
+                      </label>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="gender1"
+                          value="male"
+                          checked
+                        />
+                        <label class="form-check-label" for="gender1">
+                          Male
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="gender2"
+                          value="female"
+                          checked
+                        />
+                        <label class="form-check-label" for="gender2">
+                          Female
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label
+                            class="input-group-text"
+                            for="country"
+                          >
+                            Country
+                          </label>
+                        </div>
+                        <select class="custom-select" id="country">
+                          <option selected>Choose your country...</option>
+                          <option value="Ukraine">Ukraine</option>
+                          <option value="Poland">Poland</option>
+                          <option value="Litva">Litva</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label
+                            class="input-group-text"
+                            for="city"
+                          >
+                            City
+                          </label>
+                        </div>
+                        <select class="custom-select" id="city" disabled>
+                          <option selected>Choose your city...</option>
+                          <option value="Odessa">Odessa</option>
+                          <option value="Kyiv">Kyiv</option>
+                          <option value="Lviv">Lviv</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </form>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Password"
-                  data-required="password"
-                />
+            </div>
+            <!-- /.login-form-wrap -->
+            <div class="auth-greeting-screen d-flex align-items-center">
+              <div class="auth-greeting-screen-text">
+                <h1 class="auth-greeting-screen-title">Authentication page</h1>
+                <p class="auth-greeting-screen-description">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Maiores inventore non accusantium earum, illo dolores
+                  reprehenderit laborum ratione quos doloribus repellat eligendi
+                  deleniti. Ipsum voluptate ipsa exercitationem eaque totam. A.
+                </p>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
+            <!-- /.auth-greeting-screen -->
+          </div>
+        </div>
+        <div
+          class="tab-pane"
+          id="login"
+          role="tabpanel"
+          aria-labelledby="login-tab"
+        >
+          <!-- Login Tab -->
+          <div class="login-page-wrapp d-flex">
+            <div class="login-form-wrap d-flex align-items-center">
+              <div class="form-card card ml-auto">
+                <div class="card-body">
+                  <h4 class="card-title">Please Login</h4>
+                  <form name="loginForm">
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        aria-describedby="emailHelp"
+                        placeholder="Enter email"
+                        data-required="email"
+                        data-invalid-message="Please provide valid email example@example.com"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="Password"
+                        data-required="password"
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- /.login-form-wrap -->
+            <div class="login-greeting-screen d-flex align-items-center">
+              <div class="login-greeting-screen-text">
+                <h1 class="login-greeting-screen-title">Login please</h1>
+                <p class="login-greeting-screen-description">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Maiores inventore non accusantium earum, illo dolores
+                  reprehenderit laborum ratione quos doloribus repellat eligendi
+                  deleniti. Ipsum voluptate ipsa exercitationem eaque totam. A.
+                </p>
+              </div>
+            </div>
+            <!-- /.login-greeting-screen -->
           </div>
         </div>
       </div>
-      <!-- /.login-form-wrap -->
-      <div class="login-greeting-screen d-flex align-items-center">
-        <div class="login-greeting-screen-text">
-          <h1 class="login-greeting-screen-title">Welcome to my app</h1>
-          <p class="login-greeting-screen-description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-            inventore non accusantium earum, illo dolores reprehenderit laborum
-            ratione quos doloribus repellat eligendi deleniti. Ipsum voluptate
-            ipsa exercitationem eaque totam. A.
-          </p>
-        </div>
-      </div>
-      <!-- /.login-greeting-screen -->
     </div>
-    <!-- /.login-page-wrapp -->
   </body>
 </html>
