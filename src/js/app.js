@@ -14,7 +14,9 @@ import { getNews } from "./services/news.service";
  * p: dmgame12345
  */
 
-/**
+//  (^\d{2})?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s-.]?\d{4}
+
+/** Auth Post request '/auth/signup'
 email: ["denis.m.pcspace@gmail.com](mailto:%22denis.m.pcspace@gmail.com)",
 password: "dmgame12345",
 nickname: "dmgame",

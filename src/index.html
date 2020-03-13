@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
       <!-- Nav tabs -->
       <!-- Auth -->
       <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
@@ -81,13 +81,23 @@
                     </div>
                     <div class="form-group">
                       <label for="nickname-auth">Nickname</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="nickname-auth"
-                        placeholder="Nickname"
-                        data-required="nickname"
-                      />
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="nickname-auth-group"
+                            >@</span
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="nickname-auth"
+                          placeholder="Nickname"
+                          data-required="nickname"
+                          aria-describedby="nickname-auth-group"
+                        />
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="first_name-auth">First name</label>
@@ -131,6 +141,7 @@
                           id="gender1"
                           value="male"
                           checked
+                          data-required="gender_orientation"
                         />
                         <label class="form-check-label" for="gender1">
                           Male
@@ -143,7 +154,7 @@
                           name="gender"
                           id="gender2"
                           value="female"
-                          checked
+                          data-required="gender_orientation"
                         />
                         <label class="form-check-label" for="gender2">
                           Female
@@ -153,14 +164,15 @@
                     <div class="form-group">
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label
-                            class="input-group-text"
-                            for="country"
-                          >
+                          <label class="input-group-text" for="country">
                             Country
                           </label>
                         </div>
-                        <select class="custom-select" id="country">
+                        <select
+                          class="custom-select"
+                          id="country"
+                          data-required="country"
+                        >
                           <option selected>Choose your country...</option>
                           <option value="Ukraine">Ukraine</option>
                           <option value="Poland">Poland</option>
@@ -171,19 +183,119 @@
                     <div class="form-group">
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label
-                            class="input-group-text"
-                            for="city"
-                          >
+                          <label class="input-group-text" for="city">
                             City
                           </label>
                         </div>
-                        <select class="custom-select" id="city" disabled>
+                        <select
+                          class="custom-select"
+                          id="city"
+                          data-required="city"
+                          disabled
+                        >
                           <option selected>Choose your city...</option>
                           <option value="Odessa">Odessa</option>
                           <option value="Kyiv">Kyiv</option>
                           <option value="Lviv">Lviv</option>
                         </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="birth-day">
+                            Day of birth
+                          </label>
+                        </div>
+                        <select
+                          class="custom-select"
+                          id="birth-day"
+                          data-required="date_of_birth_day"
+                        >
+                          <option selected>Choose your day of birth...</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="31">31</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="birth-month">
+                            Month of birth
+                          </label>
+                        </div>
+                        <select
+                          class="custom-select"
+                          id="birth-month"
+                          data-required="date_of_birth_month"
+                        >
+                          <option selected
+                            >Choose your month of birth...</option
+                          >
+                          <option value="0">January</option>
+                          <option value="1">February</option>
+                          <option value="2">March</option>
+                          <option value="3">April</option>
+                          <option value="4">May</option>
+                          <option value="5">June</option>
+                          <option value="6">July</option>
+                          <option value="7">August</option>
+                          <option value="8">September</option>
+                          <option value="9">October</option>
+                          <option value="10">November</option>
+                          <option value="11">December</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="birth_year-auth-group"
+                            >Year of birth</span
+                          >
+                        </div>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="birth-year"
+                          placeholder="Year of your birth"
+                          data-required="date_of_birth_year"
+                          aria-describedby="birth_year-auth-group"
+                          min="1900"
+                          max="2020"
+                        />
                       </div>
                     </div>
 
