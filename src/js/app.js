@@ -3,9 +3,10 @@ import "bootstrap/dist/js/bootstrap";
 import "../css/style.css";
 
 import UI from "./config/ui.config";
+import UI_AUTH from "./config/ui.auth.config";
 import { validate } from "./helpers/validate";
 import { showInputError, removeInputError } from "./views/form";
-import { login } from "./services/auth.service";
+import { login, auth } from "./services/auth.service";
 import { notify } from "./views/notifications";
 import { getNews } from "./services/news.service";
 
@@ -13,35 +14,119 @@ import { getNews } from "./services/news.service";
  * l: denis.m.pcspace@gmail.com
  * p: dmgame12345
  */
-
-//  (^\d{2})?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s-.]?\d{4}
-
-/** Auth Post request '/auth/signup'
-email: ["denis.m.pcspace@gmail.com](mailto:%22denis.m.pcspace@gmail.com)",
-password: "dmgame12345",
-nickname: "dmgame",
-first_name: "Denis",
-last_name: "Mescheryakov",
-phone: "0631234567",
-gender_orientation: "male", // or "female"
-city: "Kharkiv",
-country: "Ukrane",
-date_of_birth_day: 01,
-date_of_birth_month: 03,
-date_of_birth_year: 1989,
-   */
-
+// login elements
 const { form, inputEmail, inputPassword } = UI;
 const inputs = [inputEmail, inputPassword];
+// Auth elements
+const {
+  auth_form,
+  emailEl,
+  passwordEl,
+  nicknameEl,
+  first_nameEl,
+  last_nameEl,
+  phoneEl,
+  genderEl_male,
+  genderEl_female,
+  cityEl,
+  countryEl,
+  birth_dayEl,
+  birth_monthEl,
+  birth_yearEl,
+} = UI_AUTH;
+
+const authInputs = [
+  emailEl,
+  passwordEl,
+  nicknameEl,
+  first_nameEl,
+  last_nameEl,
+  phoneEl,
+  cityEl,
+  countryEl,
+  birth_dayEl,
+  birth_monthEl,
+  birth_yearEl,
+];
 
 // Events
 form.addEventListener("submit", e => {
   e.preventDefault();
+  console.log(
+    auth_form,
+    emailEl,
+    passwordEl,
+    nicknameEl,
+    first_nameEl,
+    last_nameEl,
+    phoneEl,
+    genderEl_male,
+    genderEl_female,
+    cityEl,
+    countryEl,
+    birth_dayEl,
+    birth_monthEl,
+    birth_yearEl
+  );
   onSubmit();
 });
 inputs.forEach(el => el.addEventListener("focus", () => removeInputError(el)));
 
+// Auth submit event
+auth_form.addEventListener("submit", e => {
+  e.preventDefault();
+  onAuthSubmit();
+});
+authInputs.forEach(el =>
+  el.addEventListener("focus", () => removeInputError(el))
+);
+
 // Handlers
+// Auth handler
+async function onAuthSubmit() {
+  const isValidForm = authInputs.every(el => {
+    const isValidInput = validate(el);
+    if (!isValidInput && !el.classList.contains("is-invalid")) {
+      showInputError(el);
+    }
+    return isValidInput;
+  });
+
+  if (!isValidForm) return;
+
+  try {
+    await auth(
+      emailEl.value.trim(),
+      passwordEl.value.trim(),
+      nicknameEl.value.trim(),
+      first_nameEl.value.trim(),
+      last_nameEl.value.trim(),
+      phoneEl.value.trim(),
+      genderEl_male.checked ? genderEl_male.value : genderEl_female.value,
+      cityEl.value.trim(),
+      countryEl.value.trim(),
+      Number(birth_dayEl.value.trim()),
+      Number(birth_monthEl.value.trim()),
+      Number(birth_yearEl.value.trim())
+    ).then(res => {
+      console.log(res)
+      if (res.error) {
+        notify({
+          msg: `${res.message}`,
+          className: "alert-danger",
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    notify({
+      msg: `${error}`,
+      className: "alert-danger",
+    });
+  }
+}
+
+// Login Hendler
 async function onSubmit() {
   const isValidForm = inputs.every(el => {
     const isValidInput = validate(el);
@@ -68,3 +153,18 @@ async function onSubmit() {
     });
   }
 }
+
+// auth(
+//   "vik753@gmail.com",
+//   "dmgame12345",
+//   "dmgame",
+//   "Igor",
+//   "Korenets",
+//   "0631234567",
+//   "male",
+//   "Odessa",
+//   "Ukraine",
+//   1,
+//   3,
+//   1989
+// ).then(res => console.log(res));
