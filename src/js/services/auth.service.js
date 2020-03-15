@@ -20,7 +20,7 @@ export async function login(email, password) {
 }
 
 /** Auth Post request '/auth/signup'
-email: ["denis.m.pcspace@gmail.com](mailto:%22denis.m.pcspace@gmail.com)",
+email: email@gmail.com,
 password: "dmgame12345",
 nickname: "dmgame",
 first_name: "Denis",
