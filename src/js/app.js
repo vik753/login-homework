@@ -117,8 +117,6 @@ async function getCountriesToStore() {
     });
 }
 
-
-
 // Auth submit event
 auth_form.addEventListener("submit", e => {
   e.preventDefault();
