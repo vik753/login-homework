@@ -87,3 +87,32 @@ export async function auth(
     return Promise.reject(error);
   }
 }
+
+/**
+ * Function getCountries
+ */
+export async function getCountries() {
+  try {
+    const response = await axios.get(`/location/get-countries`);
+    // console.log('E',response.request.status);
+    return response;
+  } catch (error) {
+    // console.error("EEE", error);
+    return Promise.reject(error);
+  }
+}
+
+/**
+ * Function to get cities by country id
+ * @param {Number} country_id
+ * @returns array of cities
+ */
+export async function getCitiesByCountryCode(id) {
+  try {
+    const response = await axios.get(`/location/get-cities/${id}`);
+    // console.log(response)
+    return response;
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}

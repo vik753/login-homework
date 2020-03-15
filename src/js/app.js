@@ -6,9 +6,15 @@ import UI from "./config/ui.config";
 import UI_AUTH from "./config/ui.auth.config";
 import { validate } from "./helpers/validate";
 import { showInputError, removeInputError } from "./views/form";
-import { login, auth } from "./services/auth.service";
+import {
+  login,
+  auth,
+  getCountries,
+  getCitiesByCountryCode,
+} from "./services/auth.service";
 import { notify } from "./views/notifications";
 import { getNews } from "./services/news.service";
+import { setCountriesToSelect, setCitiesToSelect } from "./views/auth.form";
 
 /*
  * l: denis.m.pcspace@gmail.com
@@ -49,7 +55,28 @@ const authInputs = [
   birth_yearEl,
 ];
 
+const store = {
+  countries: null,
+  cities: null,
+};
+
 // Events
+document.addEventListener("DOMContentLoaded", async () => {
+  await getCountriesToStore();
+  await setCountriesToSelect(countryEl, store);
+});
+
+countryEl.addEventListener('change', async (e) => {
+  const country = Object.entries(store.countries).filter(([key, val]) => {
+    return countryEl.value === val;
+  });
+  const country_id = Number(country[0][0]);
+
+  if (!country_id || country_id === 0) return;
+  const cities = await getCitiesByCountryCode(country_id);
+  setCitiesToSelect(cities, cityEl);
+});
+
 form.addEventListener("submit", e => {
   e.preventDefault();
   console.log(
@@ -72,9 +99,30 @@ form.addEventListener("submit", e => {
 });
 inputs.forEach(el => el.addEventListener("focus", () => removeInputError(el)));
 
+// Function getCountriesToStore
+async function getCountriesToStore() {
+  await getCountries()
+    .then(data => {
+      if (!Object.values(data).length) {
+        throw new Error(`We didn't get any countries!`);
+      }
+      store.countries = data;
+    })
+    .catch(err => {
+      // console.dir(err);
+      notify({
+        msg: `${err}`,
+        className: "alert-danger",
+      });
+    });
+}
+
+
+
 // Auth submit event
 auth_form.addEventListener("submit", e => {
   e.preventDefault();
+  // console.log("store", store);
   onAuthSubmit();
 });
 authInputs.forEach(el =>
@@ -109,7 +157,7 @@ async function onAuthSubmit() {
       Number(birth_monthEl.value.trim()),
       Number(birth_yearEl.value.trim())
     ).then(res => {
-      console.log(res)
+      console.log(res);
       if (res.error) {
         notify({
           msg: `${res.message}`,
@@ -153,18 +201,3 @@ async function onSubmit() {
     });
   }
 }
-
-// auth(
-//   "vik753@gmail.com",
-//   "dmgame12345",
-//   "dmgame",
-//   "Igor",
-//   "Korenets",
-//   "0631234567",
-//   "male",
-//   "Odessa",
-//   "Ukraine",
-//   1,
-//   3,
-//   1989
-// ).then(res => console.log(res));
