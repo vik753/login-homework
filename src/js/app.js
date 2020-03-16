@@ -14,7 +14,12 @@ import {
 } from "./services/auth.service";
 import { notify } from "./views/notifications";
 import { getNews } from "./services/news.service";
-import { setCountriesToSelect, setCitiesToSelect } from "./views/auth.form";
+import {
+  setCountriesToSelect,
+  setCitiesToSelect,
+  setSpinner,
+  removeSpinner,
+} from "./views/auth.form";
 
 /*
  * l: denis.m.pcspace@gmail.com
@@ -66,15 +71,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   await setCountriesToSelect(countryEl, store);
 });
 
-countryEl.addEventListener('change', async (e) => {
+countryEl.addEventListener("change", async e => {
+  setSpinner(countryEl.parentElement.querySelector(".country-span-container"));
+
   const country = Object.entries(store.countries).filter(([key, val]) => {
     return countryEl.value === val;
   });
   const country_id = Number(country[0][0]);
 
   if (!country_id || country_id === 0) return;
+
   const cities = await getCitiesByCountryCode(country_id);
   setCitiesToSelect(cities, cityEl);
+
+  removeSpinner(
+    countryEl.parentElement.querySelector(".country-span-container")
+  );
 });
 
 form.addEventListener("submit", e => {
